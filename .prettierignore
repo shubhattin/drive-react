@@ -1,0 +1,14 @@
+node_modules
+/out
+/.next
+/py
+/public
+.env
+.env.*
+
+pnpm-lock.yaml
+src/langs/English.yaml
+# use this for safety
+# "endOfLine": "crlf", in .prettierrc
+# git config core.autocrlf true
+# git config core.safecrlf false

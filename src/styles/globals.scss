@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Nirmala UI';
+    @apply select-none;
+  }
+
+  button {
+    cursor: default;
+
+    @media (min-width: 640px) {
+      cursor: pointer;
+    }
+  }
+
+  svg {
+    display: inline-block;
+  }
+}
+
+@layer utilities {
+  .cursor-button {
+    cursor: default;
+
+    @media (min-width: 640px) {
+      cursor: pointer;
+    }
+  }
+}
