@@ -50,7 +50,7 @@ for y in ln:
     )
     print(ln[y], f"{time()-tm}s")
 
-from requests.exceptions import ConnectionError
+sh.start_thread(lambda: sh.prettier_beautify("data"))
 
 if True:  # Adding a model for TypeScript
     model = anu["संस्कृतम्"]

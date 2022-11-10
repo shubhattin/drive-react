@@ -7,13 +7,15 @@ import { AiOutlineReload } from 'react-icons/ai';
 import { GrLogout } from 'react-icons/gr';
 import { BsFolderPlus } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { Download, FileView, getSelectedFiles, SEARCH_STR } from './Loaders';
+import { getSelectedFiles, SEARCH_STR } from './Loaders/kry';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { FiUpload } from 'react-icons/fi';
 import dynamic from 'next/dynamic';
+import Download from './Loaders/Download';
+import FileView from './Loaders/FileView';
 
-const Upload = dynamic(() => import('./Upload'), { ssr: false });
+const Upload = dynamic(() => import('./Loaders/Upload'), { ssr: false });
 
 const FileBar = () => {
   return (

@@ -7,11 +7,11 @@ import type { infoType } from 'components/tracker/TrackInfo';
 import dynamic from 'next/dynamic';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import loadLangDB, { langKey, dattType} from 'langs';
+import loadLangDB, { langKey, dattType } from 'langs';
 
 const TrackInfo = dynamic(() => import('components/tracker/TrackInfo'), { ssr: false });
 
-const Index: NextPage<{ lekh: dattType["tracker"] }> = ({ lekh }) => {
+const Index: NextPage<{ lekh: dattType['tracker'] }> = ({ lekh }) => {
   const [val, setVal] = useState('');
   const [err, setErr] = useState(false);
   const [succes, setSucces] = useState(false);

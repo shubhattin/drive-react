@@ -3,13 +3,14 @@ import { load } from 'js-yaml';
 import { set_val_from_adress } from 'tools/json';
 import * as fs from 'fs';
 import type { dattType } from './model';
+export type { dattType } from './model';
 
 export type langKey = keyof typeof list; // Language list
 export const langNames = Object.values(list);
 
 const reuseValues = (datt: dattType) => {
   const { drive, tracker } = datt;
-  const reuseMap = [
+  const reuseMap: [string, string[]][] = [
     [drive.login.reset.blank_msg, ['datt.drive.login.new_user.blank_msg']],
     [drive.login.main.pass_input, ['datt.tracker.pass_input']],
     [

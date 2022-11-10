@@ -1,35 +1,22 @@
-import { FiDownload, FiExternalLink, FiUpload } from 'react-icons/fi';
-import { BiShowAlt } from 'react-icons/bi';
+import { graphql, getCookieVal, AUTH_ID } from 'tools/drive/request';
+import {
+  get_URL,
+  current_req,
+  setCurrent_req,
+  kAryaCount,
+  setKaryaCount,
+  ProgressBar,
+  getSelectedFiles
+} from './kry';
+import { lekhaAtom, currentLocAtom } from 'state/drive';
+import { useState } from 'react';
+import { useAtomValue } from 'jotai';
 import { CgClose } from 'react-icons/cg';
-import { currentLocAtom, lekhaAtom, listElement, refreshFilesAtom } from 'state/drive';
-import { useRef, useState } from 'react';
-import { clsx } from 'tools/clsx';
-import { GrDocumentUpload } from 'react-icons/gr';
-import { graphql, AUTH_ID, getCookieVal } from 'tools/drive/request';
-import { fetch_post, Fetch } from 'tools/fetch';
-import { useAtomValue, useSetAtom } from 'jotai';
 import { MIME } from '../datt/mime';
 import { toast } from 'react-toastify';
+import { BiShowAlt } from 'react-icons/bi';
+import { FiDownload, FiExternalLink } from 'react-icons/fi';
 import { FcDownload } from 'react-icons/fc';
-
-export const SEARCH_STR = 'label>input[type=checkbox]';
-let kAryaCount = 0;
-let current_req: XMLHttpRequest = null!;
-export const getSelectedFiles = () => {
-  let list: string[] = [];
-  for (let x of listElement.current.querySelectorAll<HTMLInputElement>(`${SEARCH_STR}:checked`))
-    list.push(x.value);
-  return list;
-};
-
-const ProgressBar = ({ per }: { per: number }) => {
-  return (
-    <div className="w-[75vw] border-2 border-black p-[3px] rounded mr-1">
-      <div className="bg-[green] rounded-md h-4" style={{ width: `${per}%` }}></div>
-    </div>
-  );
-};
-const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
 
 const download_file = async (
   sel: string[],
@@ -57,7 +44,7 @@ const download_file = async (
     const TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!)).sub as string;
     const URL = get_URL(ids[0], TOKEN);
     const xhr = new XMLHttpRequest();
-    current_req = xhr;
+    setCurrent_req(xhr);
     xhr.open('GET', `${URL}/files/download?name=${nm}`, true);
     xhr.setRequestHeader('X-Api-Key', window.atob(ids[1]));
     xhr.addEventListener(
@@ -97,59 +84,13 @@ const download_file = async (
       if (list.length !== ++i) down_sanchit(i);
       else {
         setDownloading(false);
-        kAryaCount = 0;
+        setKaryaCount(0);
       }
     };
   };
   down_sanchit();
 };
-export const Download = () => {
-  const lekh = lekhaAtom.fileBar.Download;
-  const pre = useAtomValue(currentLocAtom);
-  const [downloading, setDownloading] = useState(false);
-  const [fileName, setFileName] = useState('');
-  const [status, setStatus] = useState<[number, number]>([null!, null!]);
-  const download = () => {
-    if (kAryaCount !== 0) return;
-    const sel = getSelectedFiles();
-    if (sel.length === 0) return;
-    kAryaCount++;
-    download_file(sel, pre, null, setFileName, setStatus, setDownloading);
-  };
-  return (
-    <span className="mr-2">
-      <FiDownload
-        className="text-2xl active:text-[green] cursor-button"
-        onClick={() => download()}
-      />
-      {downloading && (
-        <div className="p-1 pl-1.5 fixed z-10 left-2 bottom-2 border-2 border-[red] rounded-lg bg-[aliceblue] min-w-[100px] min-h-[20px] max-w-[90%]">
-          <div className="font-semibold">
-            {lekh.download_msg} - <span className="text-[brown]">{fileName}</span>
-          </div>
-          <div className="font-semibold text-lg">
-            <span>
-              <span className="text-purple-600">{status[0]}</span>/
-              <span className="text-violet-800">{status[1]}</span>
-            </span>
-            <CgClose
-              onClick={() => {
-                setDownloading(false);
-                kAryaCount = 0;
-                current_req.abort();
-                current_req = null!;
-              }}
-              className="text-[red] text-3xl ml-5 cursor-button active:text-[brown]"
-            />
-          </div>
-          <ProgressBar per={(status[0] / status[1]) * 100} />
-        </div>
-      )}
-    </span>
-  );
-};
-
-export const FileView = () => {
+export const _Download = (isView = false) => {
   const lekh = lekhaAtom.fileBar.FileView;
   const pre = useAtomValue(currentLocAtom);
   const [src, setSrc] = useState('');
@@ -167,12 +108,23 @@ export const FileView = () => {
       });
       return;
     }
-    kAryaCount++;
-    download_file(sel, pre, setSrc, setFileName, setStatus, setDownloading);
+    setKaryaCount(kAryaCount + 1);
+    if (isView) download_file(sel, pre, setSrc, setFileName, setStatus, setDownloading);
+    else download_file(sel, pre, null, setFileName, setStatus, setDownloading);
   };
   return (
     <span className="mr-2">
-      <BiShowAlt className="text-3xl active:fill-[blue] cursor-button" onClick={() => preview()} />
+      {isView ? (
+        <BiShowAlt
+          className="text-3xl active:fill-[blue] cursor-button"
+          onClick={() => preview()}
+        />
+      ) : (
+        <FiDownload
+          className="text-2xl active:text-[green] cursor-button"
+          onClick={() => preview()}
+        />
+      )}
       {src !== '' && (
         <div className="w-11/12 h-11/12 p-1 fixed z-10 left-2 top-2 border-2 border-blue-700 rounded-lg bg-[aliceblue]">
           <div className="flex ml-4" style={{ justifyContent: 'space-between' }}>
@@ -205,9 +157,9 @@ export const FileView = () => {
             <CgClose
               onClick={() => {
                 setDownloading(false);
-                kAryaCount = 0;
+                setKaryaCount(0);
                 current_req.abort();
-                current_req = null!;
+                setCurrent_req(null!);
               }}
               className="text-[red] text-3xl ml-5 cursor-button active:text-[brown]"
             />

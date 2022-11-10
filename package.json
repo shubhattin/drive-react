@@ -6,7 +6,7 @@
     "dev": "next dev -p 3427",
     "build": "next build",
     "py": "cd py && python app.py",
-    "local-test": "npx serve out",
+    "local-test": "serve out",
     "lint": "next lint",
     "format": "prettier --plugin-search-dir . --write .",
     "format-lint": "prettier --plugin-search-dir . --check .",
