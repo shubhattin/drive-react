@@ -12,10 +12,8 @@ else:
 if input(f"Do you want to translate with {src} as base? ") != "yes":
     exit()
 
-sh.write(
-    "locales.ts", f"export const locales={sh.minify_json(sh.dict_rev(sh.lang_list))};"
-)
-sh.start_thread(lambda: sh.prettier_beautify("locales.ts"))
+sh.write("locales.json", f"{sh.minify_json(sh.dict_rev(sh.lang_list))}")
+sh.start_thread(lambda: sh.prettier_beautify("locales.json"))
 main_db = yaml.safe_load(sh.read(f"data/{ln2[src]}.yaml"))
 anu = {}
 only = json.loads(sh.read("r.json"))
