@@ -102,10 +102,11 @@ export const _Download = (isView = false) => {
     const sel = getSelectedFiles();
     if (sel.length === 0) return;
     if (sel.length !== 1) {
-      toast.error(lekh.view_error, {
-        position: toast.POSITION.TOP_LEFT,
-        autoClose: 2500
-      });
+      if (isView)
+        toast.error(lekh.view_error, {
+          position: toast.POSITION.TOP_LEFT,
+          autoClose: 2500
+        });
       return;
     }
     setKaryaCount(kAryaCount + 1);
