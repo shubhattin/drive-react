@@ -12,8 +12,10 @@ else:
 if input(f"Do you want to translate with {src} as base? ") != "yes":
     exit()
 
-sh.write("locales.json", sh.dump_json(sh.dict_rev(sh.lang_list), 2))
-sh.start_thread(lambda: sh.cmd("npx prettier locales.json --write", display=False))
+sh.write(
+    "locales.ts", f"export const locales={sh.minify_json(sh.dict_rev(sh.lang_list))};"
+)
+sh.start_thread(lambda: sh.prettier_beautify("locales.ts"))
 main_db = yaml.safe_load(sh.read(f"data/{ln2[src]}.yaml"))
 anu = {}
 only = json.loads(sh.read("r.json"))
@@ -54,14 +56,11 @@ from requests.exceptions import ConnectionError
 
 if True:  # Adding a model for TypeScript
     model = anu["संस्कृतम्"]
-    sh.write("model.ts", f"export const model = {sh.dump_json(model['client'],2)}")
-    sh.cmd("npx prettier model.ts --write", display=False)
-    try:
-        sh.write(
-            "../../py/kry/lang_data_model.py",
-            sh.generate_pydantic_data_model(model["server"]).replace(
-                "class Model", "class LangDBModel"
-            ),
-        )
-    except ConnectionError:
-        print("no network, failed to generate python data model")
+    sh.write("model.ts", sh.generate_typescript_data_model(model["client"], "dattType"))
+    sh.start_thread(lambda: sh.prettier_beautify("model.ts"))
+    sh.write(
+        "../../py/kry/lang_data_model.py",
+        sh.generate_pydantic_data_model(model["server"]).replace(
+            "class Model", "class LangDBModel"
+        ),
+    )

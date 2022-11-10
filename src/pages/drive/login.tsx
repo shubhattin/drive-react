@@ -13,12 +13,13 @@ import { authRes, storeAuthCookies } from 'tools/drive/cookie_info';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Blocker from 'tools/block';
-import loadLangDB, { langKey, dattStruct } from 'langs';
+import loadLangDB, { langKey, dattType } from 'langs';
 import { atomWithStorage } from 'jotai/utils';
 import { isLocalStorage, setIsLocalStorage } from 'state/ref/drive/shared';
 
 const isProd = process.env.NEXT_PUBLIC_IS_PRODUCTION === 'true';
-type driveDattType = typeof dattStruct.drive.login;
+
+type driveDattType = dattType['drive']['login'];
 const idAtom = atom('');
 const passAtom = atom('');
 const modeAtom = atom('main');

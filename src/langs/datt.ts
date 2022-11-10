@@ -2,11 +2,9 @@ import list from './locales.json';
 import { load } from 'js-yaml';
 import { set_val_from_adress } from 'tools/json';
 import * as fs from 'fs';
-import { model } from './model';
+import type { dattType } from './model';
 
 export type langKey = keyof typeof list; // Language list
-export const dattStruct = model; // Basic Structure of all Language DataBases
-export type dattType = typeof dattStruct;
 export const langNames = Object.values(list);
 
 const reuseValues = (datt: dattType) => {

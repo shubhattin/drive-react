@@ -7,10 +7,13 @@ import { AiOutlineReload } from 'react-icons/ai';
 import { GrLogout } from 'react-icons/gr';
 import { BsFolderPlus } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { Upload, Download, FileView, getSelectedFiles, SEARCH_STR } from './Loaders';
+import { Download, FileView, getSelectedFiles, SEARCH_STR } from './Loaders';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import type { NextRouter } from 'next/router';
+import { FiUpload } from 'react-icons/fi';
+import dynamic from 'next/dynamic';
+
+const Upload = dynamic(() => import('./Upload'), { ssr: false });
 
 const FileBar = () => {
   return (
@@ -20,13 +23,26 @@ const FileBar = () => {
       <Download />
       <Delete />
       <NewFolder />
-      <Upload />
+      <_Upload />
       <FileView />
       <Logout />
     </div>
   );
 };
 export default FileBar;
+
+const _Upload = () => {
+  const [clicked, setClicked] = useState(false);
+  return (
+    <span className="mr-2">
+      <FiUpload
+        className="text-2xl active:text-[green] cursor-button"
+        onClick={() => setClicked(true)}
+      />
+      {clicked && <Upload />}
+    </span>
+  );
+};
 
 const Selector = () => {
   const checked = useRef(false);
