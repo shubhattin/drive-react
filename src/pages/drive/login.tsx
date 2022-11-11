@@ -17,7 +17,7 @@ import loadLangDB, { langKey, dattType } from 'langs';
 import { atomWithStorage } from 'jotai/utils';
 import { isLocalStorage, setIsLocalStorage } from 'state/ref/drive/shared';
 
-const isProd = process.env.NEXT_PUBLIC_IS_PRODUCTION === 'true';
+const isProd = process.env.NODE_ENV === 'production';
 
 type driveDattType = dattType['drive']['login'];
 const idAtom = atom('');

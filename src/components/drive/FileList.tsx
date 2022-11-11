@@ -54,7 +54,7 @@ const FileList = () => {
             : fileImg.src;
         return (
           <label key={key} className="text-[#00f] font-semibold hover:text-black">
-            <input type="checkbox" className="mr-1 w-0 h-0 absolute peer" value={key} />
+            <input type="checkbox" className="mr-1 w-0 h-0 absolute peer invisible" value={key} />
             <div className="flex mb-1 p-[2px] rounded-sm whitespace-pre-wrap active:text-rose-600 peer-checked:bg-[#f2ff82] hover:bg-zinc-100 transition">
               <ImageSpan className="w-5 h-5 mr-1.5 mt-1" src={src} />
               {key}

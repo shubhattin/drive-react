@@ -4,7 +4,7 @@ import { listElement } from 'state/drive';
 export const SEARCH_STR = 'label>input[type=checkbox]';
 
 export let kAryaCount = 0;
-export const setKaryaCount = (val: number) => {
+export const setKaryaCount = (val: typeof kAryaCount) => {
   kAryaCount = val;
 };
 
@@ -28,4 +28,10 @@ export const ProgressBar = ({ per }: { per: number }) => {
       <div className="bg-[green] rounded-md h-4" style={{ width: `${per}%` }}></div>
     </div>
   );
+};
+
+export const states = {
+  upload: {
+    clicked: atom(false)
+  }
 };

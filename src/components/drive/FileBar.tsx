@@ -7,13 +7,13 @@ import { AiOutlineReload } from 'react-icons/ai';
 import { GrLogout } from 'react-icons/gr';
 import { BsFolderPlus } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { getSelectedFiles, SEARCH_STR } from './Loaders/kry';
+import { getSelectedFiles, SEARCH_STR, states } from './Loaders/kry';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { FiUpload } from 'react-icons/fi';
 import dynamic from 'next/dynamic';
-import Download from './Loaders/Download';
-import FileView from './Loaders/FileView';
+import Download from './Loaders/Download/Download';
+import FileView from './Loaders/Download/FileView';
 
 const Upload = dynamic(() => import('./Loaders/Upload'), { ssr: false });
 
@@ -34,14 +34,18 @@ const FileBar = () => {
 export default FileBar;
 
 const _Upload = () => {
-  const [clicked, setClicked] = useState(false);
+  const [, setClicked] = useAtom(states.upload.clicked);
+  const cn = useRef(0);
   return (
     <span className="mr-2">
       <FiUpload
         className="text-2xl active:text-[green] cursor-button"
-        onClick={() => setClicked(true)}
+        onClick={() => {
+          cn.current = 1;
+          setClicked(true);
+        }}
       />
-      {clicked && <Upload />}
+      {cn.current !== 0 && <Upload />}
     </span>
   );
 };
@@ -61,7 +65,7 @@ const Selector = () => {
   }, [pre]);
   return (
     <span className="mr-2 cursor-default">
-      <input type="checkbox" onClick={() => fn()} ref={elRef} />
+      <input type="checkbox" onClick={fn} ref={elRef} />
     </span>
   );
 };
