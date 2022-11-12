@@ -1,11 +1,4 @@
-import {
-  current_req,
-  setCurrent_req,
-  kAryaCount,
-  setKaryaCount,
-  ProgressBar,
-  states
-} from '../kry';
+import { refs, ProgressBar, states } from '../kry';
 import { lekhaAtom, currentLocAtom, refreshFilesAtom } from 'state/drive';
 import { useState, useRef } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
@@ -24,11 +17,12 @@ export const Upload = () => {
   const [fileName, setFileName] = useState('');
   const [status, setStatus] = useState<[number, number]>([null!, null!]);
   const startUpload = async () => {
-    if (kAryaCount !== 0) return;
+    console.log();
+    if (refs.kAryaCount !== 0) return;
     const files = fileSelectorRef.current.files;
     if (files?.length === 0) return;
     setClicked(false);
-    setKaryaCount(kAryaCount + 1);
+    refs.kAryaCount++;
     const upload_file = (await import('./upload_file')).upload_file;
     upload_file(files!, pre, refresh, setFileName, setStatus, setUploading);
   };
@@ -70,9 +64,9 @@ export const Upload = () => {
             <CgClose
               onClick={() => {
                 setUploading(false);
-                setKaryaCount(0);
-                current_req.abort();
-                setCurrent_req(null!);
+                refs.kAryaCount = 0;
+                refs.current_req.abort();
+                refs.current_req = null!;
               }}
               className="text-[red] text-3xl ml-5 cursor-button active:text-[brown]"
             />

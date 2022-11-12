@@ -1,5 +1,5 @@
 import { graphql, getCookieVal, AUTH_ID } from 'tools/drive/request';
-import { get_URL, setCurrent_req, setKaryaCount } from '../kry';
+import { get_URL, refs } from '../kry';
 import { MIME } from '@drive/datt/mime';
 
 export const download_file = async (
@@ -28,7 +28,7 @@ export const download_file = async (
     const TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!)).sub as string;
     const URL = get_URL(ids[0], TOKEN);
     const xhr = new XMLHttpRequest();
-    setCurrent_req(xhr);
+    refs.current_req = xhr;
     xhr.open('GET', `${URL}/files/download?name=${nm}`, true);
     xhr.setRequestHeader('X-Api-Key', window.atob(ids[1]));
     xhr.addEventListener(
@@ -68,7 +68,7 @@ export const download_file = async (
       if (list.length !== ++i) down_sanchit(i);
       else {
         setDownloading(false);
-        setKaryaCount(0);
+        refs.kAryaCount = 0;
       }
     };
   };

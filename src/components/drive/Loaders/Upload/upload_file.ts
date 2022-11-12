@@ -1,5 +1,5 @@
 import { graphql, getCookieVal, AUTH_ID } from 'tools/drive/request';
-import { get_URL, setCurrent_req, setKaryaCount } from '../kry';
+import { get_URL, refs } from '../kry';
 import { fetch_post, Fetch } from 'tools/fetch';
 
 export const upload_file = async (
@@ -46,7 +46,7 @@ export const upload_file = async (
     reader.readAsArrayBuffer(blob);
     reader.onload = () => {
       const xhr = new XMLHttpRequest();
-      setCurrent_req(xhr);
+      refs.current_req = xhr;
       xhr.open(
         'POST',
         `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${prefix}/${file.name}`,
@@ -81,7 +81,7 @@ export const upload_file = async (
             setUploading(false);
             refresh([[`${prefix}/${file.name}`], 'add']);
             if (files.length !== ++i) upld(i);
-            else setKaryaCount(0);
+            else refs.kAryaCount = 0;
           }
         }
       };

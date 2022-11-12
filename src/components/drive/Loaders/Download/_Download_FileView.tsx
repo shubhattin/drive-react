@@ -1,11 +1,4 @@
-import {
-  current_req,
-  setCurrent_req,
-  kAryaCount,
-  setKaryaCount,
-  ProgressBar,
-  getSelectedFiles
-} from '../kry';
+import { refs, ProgressBar, getSelectedFiles } from '../kry';
 import { lekhaAtom, currentLocAtom } from 'state/drive';
 import { useState } from 'react';
 import { useAtomValue } from 'jotai';
@@ -23,7 +16,7 @@ const _Download = (isView: boolean) => {
   const [fileName, setFileName] = useState('');
   const [status, setStatus] = useState<[number, number]>([null!, null!]);
   const preview = async () => {
-    if (kAryaCount !== 0) return;
+    if (refs.kAryaCount !== 0) return;
     const sel = getSelectedFiles();
     if (sel.length === 0) return;
     if (sel.length !== 1) {
@@ -34,7 +27,7 @@ const _Download = (isView: boolean) => {
         });
       return;
     }
-    setKaryaCount(kAryaCount + 1);
+    refs.kAryaCount++;
     const download_file = (await import('./download_file')).download_file;
     if (isView) download_file(sel, pre, setSrc, setFileName, setStatus, setDownloading);
     else download_file(sel, pre, null, setFileName, setStatus, setDownloading);
@@ -84,9 +77,9 @@ const _Download = (isView: boolean) => {
             <CgClose
               onClick={() => {
                 setDownloading(false);
-                setKaryaCount(0);
-                current_req.abort();
-                setCurrent_req(null!);
+                refs.kAryaCount = 0;
+                refs.current_req.abort();
+                refs.current_req = null!;
               }}
               className="text-[red] text-3xl ml-5 cursor-button active:text-[brown]"
             />
