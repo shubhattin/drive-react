@@ -12,7 +12,7 @@ import loadLangDB, { langKey } from 'langs';
 import { setRouter } from 'state/ref/drive';
 import { useRouter } from 'next/router';
 
-const isProd = process.env.NEXT_PUBLIC_IS_PRODUCTION === 'true';
+const isProd = process.env.NODE_ENV === 'production';
 
 const DriveIndex: NextPage<{ lekhAH: typeof lekhaAtom }> = ({ lekhAH }) => {
   const router = useRouter();

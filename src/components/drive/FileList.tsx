@@ -39,7 +39,7 @@ const FileList = () => {
           className="text-[purple] font-semibold hover:text-black"
           onClick={() => folderOpen(key)}
         >
-          <input type="checkbox" className="mr-1 w-0 h-0 absolute" disabled />
+          <input type="checkbox" className="mr-1 w-0 h-0 absolute invisible" disabled />
           <div className="flex mb-1 p-[2px] whitespace-pre-wrap active:text-orange-600 transition">
             <FcOpenedFolder className="text-2xl mr-1.5" />
             {key}
