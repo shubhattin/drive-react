@@ -44,7 +44,7 @@ client:
         new_pass: പുതിയ അടയാളവാക്ക്
         new_user_btn: പുതിയ ഉപയോക്താവിനെ ചേർക്കുക
         reset_btn: അടയാളവാക്ക് പുനഃക്രമീകരിക്കുക
-      title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ്
+      title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ് ലോഗിൻ ചെയ്യുക
   tracker:
     pass_error: തെറ്റായ കീ
     pass_input: ''

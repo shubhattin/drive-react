@@ -20,12 +20,13 @@ const _Download = (isView: boolean) => {
     const sel = getSelectedFiles();
     if (sel.length === 0) return;
     if (sel.length !== 1) {
-      if (isView)
+      if (isView) {
         toast.error(lekh.view_error, {
           position: toast.POSITION.TOP_LEFT,
           autoClose: 2500
         });
-      return;
+        return;
+      }
     }
     refs.kAryaCount++;
     const download_file = (await import('./download_file')).download_file;

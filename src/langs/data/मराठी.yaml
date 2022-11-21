@@ -41,7 +41,7 @@ client:
       reset:
         blank_msg: कृपया रिक्त जागा भरा
         current_pass: वर्तमान गुप्तशब्द
-        new_pass: नविन गुप्तशब्दComment
+        new_pass: नविन गुप्तशब्द
         new_user_btn: नविन वापरकर्ता जोडा
         reset_btn: गुप्तशब्द पुन्हस्थापीत करा
       title: ऑनलाइन फाइल ड्राइव

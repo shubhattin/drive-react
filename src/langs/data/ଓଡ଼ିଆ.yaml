@@ -44,7 +44,7 @@ client:
         new_pass: ନୂତନ ପାସୱାର୍ଡ୍
         new_user_btn: ନୂତନ ଉପଭୋକ୍ତା ଯୋଡନ୍ତୁ
         reset_btn: ପାସୱାର୍ଡ୍ ପୁନଃସେଟ୍ କରନ୍ତୁ
-      title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍
+      title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍ ଲଗଇନ୍ କରନ୍ତୁ
   tracker:
     pass_error: ଭୁଲ୍ କୀ
     pass_input: ''

@@ -44,7 +44,7 @@ client:
         new_pass: புதிய கடவுச்சொல்
         new_user_btn: புதிய பயனரை சேர்
         reset_btn: கடவுச்சொல்லை மீட்டமை
-      title: ஆன்லைன் கோப்பு இயக்ககம்
+      title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்
   tracker:
     pass_error: தவறான விசை
     pass_input: ''
