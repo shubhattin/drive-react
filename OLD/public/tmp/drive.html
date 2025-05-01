@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सञ्चिकाजालवृत्तकः</title>
+    <script src="https://cdn.jsdelivr.net/gh/ofsfobnelip/lipi/query.js"></script>
+    <link rel="stylesheet" href="/fl/drive.css">
+</head>
+
+<body>
+    <input class="init key block" type="text" id="id" placeholder="लिख्यतामुपनामम्" style="margin-bottom: 10px;">
+    <input class="init key block" type="password" id="key" placeholder="लिख्यतां गूढपदम्">
+    <div class="init flex">
+        <span class="login_img" id="login"></span>
+        <button id="rst_win">Reset</button>
+    </div>
+    <div id="ok" class="hide">
+        <div class="flex">
+            <div class="back_btn"></div>
+            <div class="pre"></div>
+        </div>
+        <div class="flex" style="margin-top: 10px;margin-bottom: 10px;">
+            <input id="sel_all" type="checkbox">
+            <div class="down_img in-block" id="down_btn"></div>
+            <a class="hide down_help"></a>
+            <div class="del_img in-block" id="del_btn"></div>
+            <div class="in-block" id="reload"></div>
+            <div class="in-block create_btn"></div>
+            <div class="in-block up_btn"></div>
+            <div class="in-block preview_img preview_btn"></div>
+            <div class="in-block logout_img logout_btn"></div>
+        </div>
+        <div id="list"></div>
+        <div class="up_msg hide above" style="margin-top:10px;">
+            <div class="flex">
+                <input type="file" id="file" multiple><span id="upload"></span>
+            </div>
+            <button onclick='$l(".up_msg").hide();'>ok</button>
+        </div>
+        <div class="down">
+            <div id="track_div">
+                <div id="msg" cl♫ass="hide"></div>
+                <div id="track" class="hide">
+                    <div class="flex">
+                        <span id="size"></span>
+                        <span id="abort" class="close_img"></span>
+                    </div>
+                    <div id="progress">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="del_msg hide above">
+            Sure to delete selected Files ?
+            <button id="del_yes">Yes</button>
+            <button onclick="$l('.del_msg').hide();">No</button>
+        </div>
+        <div class="logout_msg hide above">
+            Are Sure to logout ?
+            <button id="logout_yes">Yes</button>
+            <button onclick="$l('.logout_msg').hide();">No</button>
+        </div>
+        <div class="preview_win hide above" style="top:5px;left:5px;">
+            <div class="flex">
+                <span class="close_img" id="close_prv"></span>
+                <a target="_blank" class="redirect_img"></a>
+                <span class="down_img" id="direct_down"></span>
+            </div>
+            <div class="prv"></div>
+        </div>
+        <div class="create_msg hide above">
+            <input id="create_val" type="text" placeholder="Folder name">
+            <button id="create_yes">Create</button>
+            <button onclick="$l('.create_msg').hide();">Cancel</button>
+        </div>
+    </div>
+    <div class="hide reset">
+        <input id="rst_old" type="password" placeholder="current password"><br>
+        <input id="rst_new" type="password" placeholder="new password">
+        <div style="margin-top:10px;">
+            <button id="rst_btn">Reset</button>
+            <button id="mng_win" style="margin-left:10px;">Add New User</button>
+        </div>
+        <div class="msg"></div>
+    </div>
+    <div class="hide manage">
+        <br><input id="mng_id" type="password" placeholder="Main Password"><br>
+        <button id="mng_btn">Add User</button>
+        <div class="msg"></div>
+    </div>
+    {%- if prevent %}
+    <script type="module" src="/fl/pre.js"></script>
+    {%- endif %}
+    <script{% if prevent %} type="module"{% endif %} src="/fl/drive.js">
+    </script>
+</body>
+
+</html>

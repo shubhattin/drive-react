@@ -1,0 +1,291 @@
+body {
+    font-family: "Nirmala UI";
+    cursor: default;
+}
+
+.key {
+    border: 2px solid blue;
+    outline: none;
+    border-radius: 5px;
+    font-size: 22px;
+    width: 165px;
+    padding: 5px;
+}
+
+.list {
+    font-size: 15px;
+    color: #00f;
+    font-weight: 550;
+    display: block;
+    padding-bottom: 5px;
+    max-width: 100%;
+}
+
+.list input[type=checkbox] {
+    margin-right: 7px;
+}
+
+.list input[type=checkbox]:not(disabled):checked+div {
+    background-color: #f2ff82;
+}
+
+.list div {
+    padding-right: 3px;
+    width: 100%;
+}
+
+.list:hover {
+    color: black;
+}
+
+.folder_col {
+    color: purple;
+}
+
+#progress div {
+    background-color: green;
+    border-radius: 7px;
+    width: 0;
+    height: 15px;
+}
+
+#progress {
+    width: 80vw;
+    border: 2px solid black;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+#size {
+    color: purple;
+    font-weight: bold;
+}
+
+.hide {
+    display: none;
+}
+
+#msg {
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+    max-width: 100vw;
+    overflow: scroll;
+    scrollbar-width: 0;
+}
+
+#msg::-webkit-scrollbar {
+    display: none;
+}
+
+#prefix {
+    width: 50px;
+}
+
+.down_img {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/down.svg);
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.del_img {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/del.svg);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#upload {
+    width: 25px;
+    height: 25px;
+    background-size: 25px 25px;
+    background-image: url(/img/up.svg);
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#reload {
+    width: 23px;
+    height: 23px;
+    background-size: 23px 23px;
+    background-image: url(/img/reload.svg);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.back_btn {
+    width: 27px;
+    height: 27px;
+    background-size: 27px 27px;
+    background-image: url(/img/back.svg);
+    cursor: pointer;
+}
+
+.close_img {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/close.svg);
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.create_btn {
+    width: 27px;
+    height: 27px;
+    background-size: 27px 27px;
+    background-image: url(/img/create.svg);
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+.up_btn {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/up1.svg);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.folder_img {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-image: url(/img/folder.svg);
+    margin-right: 6px;
+    margin-left: 3px;
+}
+
+.preview_img {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/preview.svg);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.logout_img {
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    background-image: url(/img/logout.svg);
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.preview_win {
+    left: 5px;
+    top: 5px;
+}
+
+.preview_win div.prv iframe {
+    margin: 2px;
+    margin-top: 10px;
+    width: 95%;
+}
+
+.file_img {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    margin-right: 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+
+.in-block {
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+#list {
+    margin: 10px 0 10px 10px;
+    border: 2px solid brown;
+    display: inline-block;
+    min-width: 300px;
+    min-height: 250px;
+    border-radius: 5px;
+    max-height: 70vh;
+    overflow: scroll;
+    padding: 7px;
+    margin-bottom: 100px;
+    background-color: #fbfffb;
+    max-width: 90%;
+    user-select: none;
+}
+
+.pre {
+    color: brown;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.block {
+    display: block;
+}
+
+.above {
+    padding: 4px;
+    position: fixed;
+    z-index: 10;
+    left: 17px;
+    top: 20px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+.down {
+    padding: 4px;
+    position: fixed;
+    z-index: 10;
+    left: 10px;
+    bottom: 10px;
+    border: 2px solid red;
+    border-radius: 5px;
+    background-color: aliceblue;
+    padding: 4px;
+    min-width: 100px;
+    min-height: 20px;
+    max-width: 90%;
+}
+
+.redirect_img {
+    width: 25px;
+    height: 25px;
+    background-size: 25px 25px;
+    background-image: url(/img/redirect.svg);
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.login_img {
+    width: 35px;
+    height: 35px;
+    background-size: 35px 35px;
+    background-image: url(/img/login.png);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#login {
+    margin-left: 35px;
+    margin-right: 20px;
+    margin-top: 5px;
+}

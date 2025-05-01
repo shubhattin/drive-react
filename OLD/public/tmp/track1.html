@@ -1,0 +1,51 @@
+<style>
+    body {
+        font-family: "Nirmala UI"
+    }
+
+    .la {
+        font-size: 17px;
+        color: #863386;
+        font-weight: 550
+    }
+
+    .la1 {
+        font-size: 15px;
+        color: #00f;
+        font-weight: 550
+    }
+
+    #lpi {
+        font-size: 25px;
+        font-weight: 700;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: red;
+        padding: 5px;
+        outline: none;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    .la::marker {
+        color: green;
+    }
+    .la span{
+        color: brown;
+    }
+</style>
+<select id="lpi">
+    {%- for x in track_lst %}
+        <option value="{{ x[0] }}">{{ x[1] }}</option>
+    {%- endfor %}
+</select>
+<div id="su">
+{%- for n in data %}
+    <div typ="{{ n }}"><ul>
+    {%- for c in data[n] %}
+        <li class="la" {% if c=="परिगणना" %}style="color:blue"{% endif %}>{{ c }} - <span>{{ data[n][c] }}</span></li>
+    {%- endfor %}
+    </ul></div>
+{%- endfor %}
+</div>
